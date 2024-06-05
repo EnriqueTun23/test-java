@@ -1,0 +1,23 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper
+        PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<mapper namespace="com.example.examen_task.mapper.TareaMapper">
+
+    <resultMap id="TareaResultMap" type="com.example.examen_task.model.Tarea">
+        <id property="id" column="id"/>
+        <result property="nombre" column="nombre"/>
+        <result property="descripcion" column="descripcion"/>
+        <result property="fechaInicio" column="fecha_inicio" javaType="java.util.Date" jdbcType="DATE"/>
+    </resultMap>
+
+    <select id="obtenerTareas" resultMap="TareaResultMap">
+        SELECT * FROM tarea
+    </select>
+
+    <insert id="insertarTarea" useGeneratedKeys="true" keyProperty="id">
+        INSERT INTO tarea (nombre, descripcion, fecha_inicio)
+        VALUES (#{nombre}, #{descripcion}, #{fechaInicio})
+    </insert>
+</mapper>
